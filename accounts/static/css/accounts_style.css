@@ -1,0 +1,22 @@
+form{
+    margin: 0 auto;
+    width: 400px;
+}
+
+h1{
+    text-align: center;
+}
+
+.form_container{
+    position: center;
+    vertical-align: middle;
+    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    background-color: aliceblue;
+}
+
+body{
+    background-color: antiquewhite;
+}

@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class WelcomePage(LoginRequiredMixin,TemplateView):
+class WelcomePage(LoginRequiredMixin, TemplateView):
     template_name = 'welcome.html'
 
 

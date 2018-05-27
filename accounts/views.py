@@ -64,3 +64,7 @@ def signup(request):
 	context = {'user_form': user_form, 'profile_form': profile_form}
 	return render(request, 'signup.html', context)
 
+
+@login_required
+def profile(request):
+	return render(request, 'profile.html', {})

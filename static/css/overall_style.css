@@ -1,0 +1,14 @@
+body {
+    background-color: honeydew;
+}
+
+.mycontent {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+
+#map {
+    height: 100vh;
+    width: 100vw;
+}
