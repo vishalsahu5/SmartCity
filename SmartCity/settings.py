@@ -27,7 +27,7 @@ INSTALLED_APPS = [
 	'accounts',
 	'dustbin',
 	'parking',
-	'bootstrap3',
+	'bootstrap4',
 	'rest_framework',
 ]
 

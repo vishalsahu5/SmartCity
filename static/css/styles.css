@@ -1,0 +1,68 @@
+.login-light {
+    height: 100vh;
+    background: #475d62 url(../img/bg.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    /*background-repeat:none;*/
+}
+
+.login-light form {
+    max-width: 320px;
+    width: 90%;
+    background-color: #f1e5d3;
+    background-image: linear-gradient(62deg, #f1e5d3 0%, #fddf95 100%);
+    padding: 40px;
+    border-radius: 4px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #222;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+    opacity: 0.9
+}
+
+.login-light .illustration {
+    text-align: center;
+    font-size: 100px;
+    color: #333;
+}
+
+.login-light form .form-control {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #434a52;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    color: #000;
+    font-weight: 600;
+}
+
+.login-light form .btn-primary {
+    background: #214a80;
+    border: none;
+    border-radius: 4px;
+    padding: 11px;
+    box-shadow: none;
+    margin-top: 26px;
+    text-shadow: none;
+    outline: none;
+}
+
+.login-light form .btn-primary {
+    background: #d49112;
+    transition: background 0.3s;
+
+}
+
+.login-light form .btn-primary:hover, .login-light form .btn-primary:active {
+    background: #a26f0d;
+    outline: none;
+}
+
+.login-light form .btn-primary:active {
+    transform: translateY(1px);
+}
+

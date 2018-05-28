@@ -8,11 +8,17 @@ h1{
 }
 
 .form_container{
-    position: center;
-    vertical-align: middle;
-    margin: 0 auto;
-    top: 50%;
-    left: 50%;
+    margin: 50% auto 0 auto;
+    transform: translateY(-80%);
+    padding-bottom: 2.5rem;
+    padding-top: 4rem;
+    width: 500px;
+    background-color: aliceblue;
+}
+.login_container{
+    margin: 15% auto 0 auto;
+    padding-bottom: 2.5rem;
+    padding-top: 4rem;
     width: 500px;
     background-color: aliceblue;
 }
