@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="col-md-8">
+	    <div class="list-group">
+            {% for dustbin in object_list %}
+                <a class="list-group-item" href="{% url 'dustbin:dustbin_detail' pk=dustbin.pk %}">
+                    <h3 class="title list-group-item-heading">{{ dustbin }}</h3>
+                </a>
+            {% endfor %}
+	    </div>
+    </div>
+
+{% endblock %}
