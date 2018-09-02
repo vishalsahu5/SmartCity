@@ -1,9 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import User
+from accounts.models import User
 
 
 class ParkingLot(models.Model):
+
 	moderator = models.OneToOneField(to=User, on_delete=models.DO_NOTHING, null=True, default=None)
+
 	longitude = models.FloatField(null=True)
 	latitude = models.FloatField(null=True)
 	location = models.CharField(max_length=500, null=True)
@@ -18,6 +20,7 @@ class ParkingLot(models.Model):
 
 
 class ParkingSlot(models.Model):
+
 	lot = models.OneToOneField(on_delete=models.CASCADE, to=ParkingLot)
 	parked_user = models.OneToOneField(default=None, to=User, blank=True, null=True, on_delete=models.DO_NOTHING)
 	isOccupied = models.BooleanField(default=False)
