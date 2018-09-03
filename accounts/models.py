@@ -33,6 +33,7 @@ class UserManager(BaseUserManager):
 			mobile=mobile,
 			password=password
 		)
+		user.active = True
 		user.staff = True
 		user.save(using=self._db)
 		return user
@@ -46,6 +47,7 @@ class UserManager(BaseUserManager):
 			mobile=mobile,
 			password=password
 		)
+		user.active = True
 		user.staff = True
 		user.admin = True
 		user.save(using=self._db)
@@ -65,7 +67,7 @@ class User(AbstractBaseUser):
 		unique=True,
 	)
 
-	active = models.BooleanField(default=True)
+	active = models.BooleanField(default=False)
 	staff = models.BooleanField(default=False)  # a admin user; non super-user
 	admin = models.BooleanField(default=False)  # a superuser
 	# notice the absence of a "Password field", that's built in.
@@ -109,3 +111,31 @@ class User(AbstractBaseUser):
 	def is_active(self):
 		"Is the user active?"
 		return self.active
+
+
+class UserVerify(models.Model):
+	"""
+	Model used for verifying users via otp
+	"""
+	owner = models.ForeignKey(to=User)
+	verify_code = models.CharField(
+		max_length=254,
+		null=True,
+		default=None,
+		verbose_name='OTP'
+	)
+
+	def send_sms(self):
+		"""
+		TODO : Use twilio API to actually send sms to mobile phone
+		:return:
+		"""
+		# print("OTP -----> " + str(self.verify_code))
+
+	def print_otp_to_console(self):
+		"""
+		A useless function to print otp to console to authenticate users while the sms
+		feature is not ready.
+		:return:
+		"""
+		print("OTP -----> " + str(self.verify_code))

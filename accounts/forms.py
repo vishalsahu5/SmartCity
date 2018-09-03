@@ -2,7 +2,8 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
-from .models import User
+from .models import User, UserVerify
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class RegisterForm(forms.ModelForm):
@@ -18,6 +19,8 @@ class RegisterForm(forms.ModelForm):
 		qs = User.objects.filter(mobile=mobile)
 		if qs.exists():
 			raise forms.ValidationError('mobile number is taken')
+
+		return mobile
 
 	def clean_email(self):
 		email = self.cleaned_data.get('email')
@@ -58,6 +61,7 @@ class UserAdminCreationForm(forms.ModelForm):
 		qs = User.objects.filter(mobile=mobile)
 		if qs.exists():
 			raise forms.ValidationError('mobile number is taken')
+		return mobile
 
 	def clean_email(self):
 		email = self.cleaned_data.get('email')
@@ -99,3 +103,13 @@ class UserAdminChangeForm(forms.ModelForm):
 		# This is done here, rather than on the field, because the
 		# field does not have access to the initial value
 		return self.initial["password"]
+
+
+class UserLoginForm(AuthenticationForm):
+	model = User
+
+
+class UserVerificationForm(forms.ModelForm):
+	class Meta:
+		model = UserVerify
+		fields = ('verify_code',)

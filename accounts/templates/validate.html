@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static "css/accounts_style.css" %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="login_container container">
+    <h1>Validate Mobile Number</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Verify" class="btn btn-default">
+    </form>
+</div>
+{% endblock %}
