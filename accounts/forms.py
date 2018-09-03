@@ -6,12 +6,18 @@ from .models import User
 
 
 class RegisterForm(forms.ModelForm):
-	password1 = forms.CharField(widget=forms.PasswordInput)
+	password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
 	password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
 
 	class Meta:
 		model = User
-		fields = ('email',)
+		fields = ('mobile', 'email',)
+
+	def clean_mobile(self):
+		mobile = self.cleaned_data.get('mobile')
+		qs = User.objects.filter(mobile=mobile)
+		if qs.exists():
+			raise forms.ValidationError('mobile number is taken')
 
 	def clean_email(self):
 		email = self.cleaned_data.get('email')
@@ -45,7 +51,20 @@ class UserAdminCreationForm(forms.ModelForm):
 
 	class Meta:
 		model = User
-		fields = ('email',)
+		fields = ('mobile', 'email',)
+
+	def clean_mobile(self):
+		mobile = self.cleaned_data.get('mobile')
+		qs = User.objects.filter(mobile=mobile)
+		if qs.exists():
+			raise forms.ValidationError('mobile number is taken')
+
+	def clean_email(self):
+		email = self.cleaned_data.get('email')
+		qs = User.objects.filter(email=email)
+		if qs.exists():
+			raise forms.ValidationError("email is taken")
+		return email
 
 	def clean_password2(self):
 		# Check that the two password entries match
@@ -73,7 +92,7 @@ class UserAdminChangeForm(forms.ModelForm):
 
 	class Meta:
 		model = User
-		fields = ('email', 'password', 'active', 'admin')
+		fields = ('mobile', 'email', 'password', 'active', 'admin')
 
 	def clean_password(self):
 		# Regardless of what the user provides, return the initial value.
