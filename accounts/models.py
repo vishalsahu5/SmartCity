@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import (
 	BaseUserManager, AbstractBaseUser
 )
+from sinchsms import SinchSMS
 
 
 class UserManager(BaseUserManager):
@@ -130,7 +131,23 @@ class UserVerify(models.Model):
 		TODO : Use twilio API to actually send sms to mobile phone
 		:return:
 		"""
-		# print("OTP -----> " + str(self.verify_code))
+		number = '+91' + self.owner.mobile
+		message = self.verify_code
+		client = SinchSMS('d9abf26d-0ec2-49f3-af2c-17cda14911a4', 'C1sG5vRbskaqWB37kUKMPg==')
+
+		print("Sending '%s' to %s" % (message, number))
+		response = client.send_message(number, message)
+		message_id = response['messageId']
+		response = client.check_status(message_id)
+
+		while response['status'] != 'Successful':
+			print(response['status'])
+			time.sleep(1)
+			response = client.check_status(message_id)
+
+		print(response['status'])
+
+	# print("OTP -----> " + str(self.verify_code))
 
 	def print_otp_to_console(self):
 		"""
