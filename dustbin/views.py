@@ -8,17 +8,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView
 
 
-class DustBinViewSet(viewsets.ModelViewSet):
-	"""
-	API endpoint that allows dustbins to be viewed or edited.
-	"""
-	queryset = Dustbin.objects.all()
-	serializer_class = DustbinSerializer
-
-
 class DustBinListView(LoginRequiredMixin, ListView):
 	"""
-	Listview that displays all the dustbins
+	ListView that displays all the dustbins
 	"""
 	model = Dustbin
 	template_name = 'dustbin_list.html'
@@ -32,3 +24,14 @@ class DustBinDetailView(LoginRequiredMixin, DetailView):
 	model = Dustbin
 	context_object_name = 'dustbin'
 	template_name = 'dustbin_detail.html'
+
+
+#########################################################################################
+# Api Views Below this point.
+#########################################################################################
+class DustBinViewSet(viewsets.ModelViewSet):
+	"""
+	API endpoint that allows dustbins to be viewed or edited.
+	"""
+	queryset = Dustbin.objects.all()
+	serializer_class = DustbinSerializer

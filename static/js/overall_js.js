@@ -2,7 +2,7 @@ var map = null;
 $(document).ready(function () {
     $.ajax({
         type: 'GET',
-        url: 'http://127.0.0.1:8000/dustbin/dustbins/?format=json',
+        url: 'http://127.0.0.1:8000/dustbin/api/dustbins/?format=json',
         success: function (data) {
             var dustbin_points = [];
             var type = "DUSTBIN";
