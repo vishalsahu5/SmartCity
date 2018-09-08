@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
     <link rel="stylesheet" href="{% static "fonts/ionicons.min.css" %}">
     <link rel="stylesheet" href="{% static "css/overall_style.css" %}">
+
     {% block head %}
     {% endblock %}
+
 </head>
 <body style="margin: 0;padding: 0;">
 
@@ -51,8 +53,10 @@
 <!-- Below Navbar, Header and stuff -->
 
 <div class="container mycontent">
+
     {% block content %}
     {% endblock %}
+
 </div>
 <script src="{% static "js/jquery.min.js" %}"></script>
 <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>

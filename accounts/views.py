@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
-from accounts.serializers import CustomUserSerializer
+from accounts.serializers import UserSerializer
 from django.views import generic
 from django.urls import reverse_lazy
 from accounts.models import User, UserVerify
@@ -98,5 +98,4 @@ class UserViewSet(viewsets.ModelViewSet):
 	API endpoint that allows users to be viewed or edited.
 	"""
 	queryset = User.objects.all().order_by('mobile')
-	serializer_class = CustomUserSerializer
-
+	serializer_class = UserSerializer
