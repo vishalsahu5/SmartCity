@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import TokenAuthentication, BasicAuthentication, SessionAuthentication
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -18,6 +18,7 @@ from accounts.models import User, UserVerify
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import FormView
 import random
+from accounts.permissions import ListAdminOnly, AnonCreateAndUpdateOwnerOnly
 
 
 class UserLoginView(FormView):
@@ -106,6 +107,12 @@ class UserViewSet(viewsets.ModelViewSet):
 	"""
 	queryset = User.objects.all().order_by('mobile')
 	serializer_class = UserSerializer
+	lookup_field = 'mobile'
+
+	# Custom permissions are used.
+	permission_classes = (ListAdminOnly, AnonCreateAndUpdateOwnerOnly)
+
+	authentication_classes = (BasicAuthentication, SessionAuthentication, TokenAuthentication)
 
 
 @method_decorator(csrf_exempt, name='dispatch')
