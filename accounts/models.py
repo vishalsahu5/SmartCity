@@ -128,7 +128,7 @@ class UserVerify(models.Model):
 
 	def send_sms(self):
 		"""
-		TODO : Use twilio API to actually send sms to mobile phone
+		TODO : Use twilio/sinch API to actually send sms to mobile phone
 		:return:
 		"""
 		number = '+91' + self.owner.mobile

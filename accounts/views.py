@@ -1,14 +1,19 @@
 from django.shortcuts import render
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from accounts.forms import RegisterForm, UserLoginForm, UserVerificationForm
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
-from accounts.serializers import UserSerializer
+from accounts.serializers import UserSerializer, LoginSerializer
 from django.views import generic
 from django.urls import reverse_lazy
 from accounts.models import User, UserVerify
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.views.generic import FormView
 import random
 
@@ -99,3 +104,31 @@ class UserViewSet(viewsets.ModelViewSet):
 	"""
 	queryset = User.objects.all().order_by('mobile')
 	serializer_class = UserSerializer
+
+
+class LoginView(APIView):
+	def post(self, request):
+		serializer = LoginSerializer(data=request.data)
+		serializer.is_valid(raise_exception=True)
+		user = serializer.validated_data["user"]
+		if user.is_active:
+			login(request, user)
+			token, created = Token.objects.get_or_create(user=user)
+			return Response({"token": token.key}, status=200)
+		else:
+			msg = "User is not active. Please verify with otp."
+			return Response({"error": msg})
+
+
+class LogoutView(APIView):
+	authentication_classes = (TokenAuthentication, )
+
+	def post(self, request):
+		logout(request)
+		return Response(status=204)
+
+
+class ValidateView(APIView):
+
+	def post(self, request):
+		pass
