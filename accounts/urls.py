@@ -15,8 +15,8 @@ urlpatterns = [
 	url(r"logout/$", auth_views.logout, name="logout"),
 	url(r"signup/$", views.SignUp.as_view(), name="signup"),
 	url(r"profile/$", views.profile, name="profile"),
-	url(r"api/login/$", views.LoginView.as_view(), name="api-login"),
-	url(r"api/logout/$", views.LogoutView.as_view(), name="api-logout"),
+	url(r"api/signin/$", views.LoginView.as_view(), name="api-login"),
+	url(r"api/signout/$", views.LogoutView.as_view(), name="api-logout"),
 	url(r"otp_verify/(?P<pk>\d+)/$", views.OtpVerify.as_view(), name="otp_verify"),
 	url(r'^api/', include(router.urls)),
 	url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))

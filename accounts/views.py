@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
@@ -106,6 +108,7 @@ class UserViewSet(viewsets.ModelViewSet):
 	serializer_class = UserSerializer
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class LoginView(APIView):
 	def post(self, request):
 		serializer = LoginSerializer(data=request.data)
@@ -120,6 +123,7 @@ class LoginView(APIView):
 			return Response({"error": msg})
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class LogoutView(APIView):
 	authentication_classes = (TokenAuthentication, )
 

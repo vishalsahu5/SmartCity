@@ -29,6 +29,7 @@ INSTALLED_APPS = [
 	'parking',
 	'bootstrap4',
 	'rest_framework',
+	'rest_framework.authtoken',
 ]
 
 REST_FRAMEWORK = {
