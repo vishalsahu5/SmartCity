@@ -15,7 +15,7 @@ $(document).ready(function () {
     });
     $.ajax({
         type: 'GET',
-        url: 'http://127.0.0.1:8000/parking/parking_lots/?format=json',
+        url: 'http://127.0.0.1:8000/parking/api/parking_lots/?format=json',
         success: function (data) {
             var parking_points = [];
             var type = "PARKING";

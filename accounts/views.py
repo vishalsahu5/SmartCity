@@ -112,7 +112,8 @@ class UserViewSet(viewsets.ModelViewSet):
 	# Custom permissions are used.
 	permission_classes = (ListAdminOnly, AnonCreateAndUpdateOwnerOnly)
 
-	authentication_classes = (BasicAuthentication, SessionAuthentication, TokenAuthentication)
+	# authentication_classes = (BasicAuthentication, SessionAuthentication, TokenAuthentication)
+	authentication_classes = (TokenAuthentication, SessionAuthentication, )
 
 
 @method_decorator(csrf_exempt, name='dispatch')
