@@ -3,6 +3,8 @@ from parking.models import ParkingLot, ParkingSlot
 
 
 class ParkingLotSerializer(serializers.ModelSerializer):
+	id = serializers.IntegerField(read_only=True)
+
 	class Meta:
 		model = ParkingLot
 		fields = ('id', 'longitude', 'latitude', 'location', 'isFull')
@@ -11,4 +13,4 @@ class ParkingLotSerializer(serializers.ModelSerializer):
 class ParkingSlotSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = ParkingSlot
-		fields = ('lot', 'parked_user', 'isOccupied')
+		fields = ('lot', 'isOccupied')
