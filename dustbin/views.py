@@ -6,6 +6,8 @@ from dustbin.serializers import DustbinSerializer
 from dustbin.models import Dustbin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView
+from accounts.permissions import ListAdminOnly
+from rest_framework.authentication import TokenAuthentication,SessionAuthentication
 
 
 class DustBinListView(LoginRequiredMixin, ListView):
@@ -35,3 +37,5 @@ class DustBinViewSet(viewsets.ModelViewSet):
 	"""
 	queryset = Dustbin.objects.all()
 	serializer_class = DustbinSerializer
+	permission_classes = (ListAdminOnly, )
+	authentication_classes = (TokenAuthentication, SessionAuthentication)
