@@ -24,3 +24,18 @@ class ListAdminOnly(permissions.BasePermission):
 
 	def has_permission(self, request, view):
 		return view.action != 'list' or request.user and request.user.is_staff
+
+
+class AnonReadCreateAndUpdateAdminOnly(permissions.BasePermission):
+	"""
+	Custom permission to allow anonymous read. Create and Update can only be done by admins.
+	"""
+
+	def has_permission(self, request, view):
+		if view.action == 'list' or view.action == 'retrieve':
+			return True
+		else:
+			if request.user and request.user.is_authenticated and request.user.is_admin:
+				return True
+			else:
+				return False
