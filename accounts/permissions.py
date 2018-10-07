@@ -30,9 +30,12 @@ class ListAdminOnly(permissions.BasePermission):
 		else:
 			return False
 
+
 class AnonReadCreateAndUpdateAdminOnly(permissions.BasePermission):
 	"""
-	Custom permission to allow anonymous read. Create and Update can only be done by admins.
+	Custom permission:
+		- Allow anonymous GET.
+		- All actions allowed for admin.
 	"""
 
 	def has_permission(self, request, view):

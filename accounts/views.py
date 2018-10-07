@@ -101,6 +101,7 @@ def profile(request):
 #########################################################################################
 # Api Views Below this point.
 #########################################################################################
+@method_decorator(csrf_exempt, name='dispatch')
 class UserViewSet(viewsets.ModelViewSet):
 	"""
 	API endpoint that allows users to be viewed or edited.
