@@ -12,6 +12,7 @@ router.register(r'dustbins', views.DustBinViewSet)
 urlpatterns = [
 	url(r'^api/', include(router.urls)),
 	url(r"^$", views.DustBinListView.as_view(), name="dustbin_list"),
+	url(r"^path/$", views.DustbinShortestPathView.as_view(), name="dustbin_path"),
 	url(r"^(?P<pk>\d+)/$", views.DustBinDetailView.as_view(), name="dustbin_detail"),
 	url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

@@ -5,7 +5,7 @@ from rest_framework import viewsets
 from dustbin.serializers import DustbinSerializer
 from dustbin.models import Dustbin
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from accounts.permissions import ListAdminOnly
 from rest_framework.authentication import TokenAuthentication,SessionAuthentication
 
@@ -26,6 +26,13 @@ class DustBinDetailView(LoginRequiredMixin, DetailView):
 	model = Dustbin
 	context_object_name = 'dustbin'
 	template_name = 'dustbin_detail.html'
+
+class DustbinShortestPathView(LoginRequiredMixin, TemplateView):
+	"""
+	DetailView that displays the shortest path to visist all the dustbins
+	"""
+	model = Dustbin
+	template_name = 'dustbin_path.html'
 
 
 #########################################################################################

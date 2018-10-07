@@ -55,12 +55,12 @@ function addMarkers(points, type) {
 }
 
 function initMap() {
-    var default_location = {lat: 0.0, lng: 0.0};
+    var default_location = {lat: 30.3398, lng: 76.3869};
     map = new google.maps.Map(
         document.getElementById('map'), {
-            zoom: 4,
             center: default_location,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            zoom: 13
+            // mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-    addMarkers();
+        addMarkers();
 }

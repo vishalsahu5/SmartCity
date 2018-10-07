@@ -23,8 +23,12 @@ class ListAdminOnly(permissions.BasePermission):
 	"""
 
 	def has_permission(self, request, view):
-		return view.action != 'list' or request.user and request.user.is_staff
-
+		if request.user and request.user.is_staff:
+			return True
+		if view.action == 'list':
+			return True
+		else:
+			return False
 
 class AnonReadCreateAndUpdateAdminOnly(permissions.BasePermission):
 	"""
