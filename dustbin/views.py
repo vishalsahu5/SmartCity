@@ -27,6 +27,7 @@ class DustBinDetailView(LoginRequiredMixin, DetailView):
 	context_object_name = 'dustbin'
 	template_name = 'dustbin_detail.html'
 
+
 class DustbinShortestPathView(LoginRequiredMixin, TemplateView):
 	"""
 	DetailView that displays the shortest path to visist all the dustbins

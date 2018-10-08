@@ -5,7 +5,7 @@ from rest_framework import viewsets
 from parking.serializers import ParkingLotSerializer, ParkingSlotSerializer, OnStreetParkingSlotSerializer
 from parking.models import ParkingSlot, ParkingLot, OnStreetParkingSlot
 from accounts.permissions import AnonReadCreateAndUpdateAdminOnly
-from rest_framework.authentication import TokenAuthentication,SessionAuthentication
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 
 
 #########################################################################################
