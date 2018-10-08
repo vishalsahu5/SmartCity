@@ -7,7 +7,8 @@ class ParkingLotSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = ParkingLot
-		fields = ('id', 'longitude', 'latitude', 'location', 'isFull')
+		# fields = ('id', 'longitude', 'latitude', 'location', 'isFull')
+		fields = '__all__'
 
 
 class ParkingSlotSerializer(serializers.ModelSerializer):
@@ -15,7 +16,8 @@ class ParkingSlotSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = ParkingSlot
-		fields = ('id', 'lot', 'isOccupied')
+		# fields = ('id', 'lot', 'isOccupied')
+		fields = '__all__'
 
 
 class OnStreetParkingSlotSerializer(serializers.ModelSerializer):
