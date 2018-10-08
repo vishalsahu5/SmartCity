@@ -111,9 +111,8 @@ class UserViewSet(viewsets.ModelViewSet):
 	lookup_field = 'mobile'
 
 	# Custom permissions are used.
-	permission_classes = (ListAdminOnly, AnonCreateAndUpdateOwnerOnly)
+	permission_classes = (AnonCreateAndUpdateOwnerOnly, ListAdminOnly)
 
-	# authentication_classes = (BasicAuthentication, SessionAuthentication, TokenAuthentication)
 	authentication_classes = (TokenAuthentication, SessionAuthentication, )
 
 
