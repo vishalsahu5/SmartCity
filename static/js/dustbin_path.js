@@ -47,7 +47,7 @@
               var type = "DUSTBIN";
               console.log('success', data);
               for (var i = 0; i < data.length; i++) {
-                  if(data[i]['isFull'] === true)
+                  if(data[i]['isFull'] === false)
                     dustbin_points.push({'title': data[i]['location'], 'latLng': new google.maps.LatLng(data[i]['latitude'], data[i]['longitude'])});
               }
               var default_location = {lat: 30.3398, lng: 76.3869};
