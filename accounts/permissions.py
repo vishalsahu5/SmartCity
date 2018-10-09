@@ -10,17 +10,9 @@ class AnonCreateAndUpdateOwnerOnly(permissions.BasePermission):
 	"""
 
 	def has_permission(self, request, view):
-		# if view.action == 'create':
-		# 	return True
-		# if request.user and request.user.is_authenticated:
-		# 	return True
-		# else:
-		# 	return False
-		return view.action == 'create' or (request.user and request.user.is_authenticated)
+		return view.action == 'create' or request.user and request.user.is_authenticated
 
 	def has_object_permission(self, request, view, obj):
-		if view.action == 'create':
-			return True
 		allowed_actions = ['retrieve', 'update', 'partial_update']
 		return view.action in allowed_actions and obj.id == request.user.id or request.user.is_staff
 
@@ -29,17 +21,14 @@ class ListAdminOnly(permissions.BasePermission):
 	"""
 	Custom permission to only allow access to lists for admins
 	"""
+
 	def has_permission(self, request, view):
-		if view.action == 'create':
-			return True
-		return view.action == 'list' and request.user and request.user.is_staff
+		return view.action != 'list' or request.user and request.user.is_staff
 
 
 class AnonReadCreateAndUpdateAdminOnly(permissions.BasePermission):
 	"""
-	Custom permission:
-		- Allow anonymous GET.
-		- All actions allowed for admin.
+	Custom permission to allow anonymous read. Create and Update can only be done by admins.
 	"""
 
 	def has_permission(self, request, view):
