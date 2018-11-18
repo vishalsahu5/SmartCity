@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from rest_framework import viewsets
-from parking.serializers import ParkingLotSerializer, ParkingSlotSerializer, OnStreetParkingSlotSerializer
-from parking.models import ParkingSlot, ParkingLot, OnStreetParkingSlot
+from parking.serializers import *
+from parking.models import ParkingSlot, ParkingLot, OnStreetParkingSlot, Booking
 from accounts.permissions import AnonReadCreateAndUpdateAdminOnly
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 
@@ -17,8 +17,8 @@ class ParkingSlotViewSet(viewsets.ModelViewSet):
 	"""
 	queryset = ParkingSlot.objects.all()
 	serializer_class = ParkingSlotSerializer
-	permission_classes = (AnonReadCreateAndUpdateAdminOnly,)
-	authentication_classes = (TokenAuthentication, SessionAuthentication)
+	# permission_classes = (AnonReadCreateAndUpdateAdminOnly,)
+	# authentication_classes = (TokenAuthentication, SessionAuthentication)
 
 
 class ParkingLotViewSet(viewsets.ModelViewSet):
@@ -27,8 +27,8 @@ class ParkingLotViewSet(viewsets.ModelViewSet):
 	"""
 	queryset = ParkingLot.objects.all()
 	serializer_class = ParkingLotSerializer
-	permission_classes = (AnonReadCreateAndUpdateAdminOnly,)
-	authentication_classes = (TokenAuthentication, SessionAuthentication)
+	# permission_classes = (AnonReadCreateAndUpdateAdminOnly,)
+	# authentication_classes = (TokenAuthentication, SessionAuthentication)
 
 
 class OnStreetParkingSlotViewSet(viewsets.ModelViewSet):
@@ -37,6 +37,15 @@ class OnStreetParkingSlotViewSet(viewsets.ModelViewSet):
 	"""
 	queryset = OnStreetParkingSlot.objects.all()
 	serializer_class = OnStreetParkingSlotSerializer
-	permission_classes = (AnonReadCreateAndUpdateAdminOnly,)
-	authentication_classes = (TokenAuthentication, SessionAuthentication)
+	# permission_classes = (AnonReadCreateAndUpdateAdminOnly,)
+	# authentication_classes = (TokenAuthentication, SessionAuthentication)
+
+
+class BookingViewSet(viewsets.ModelViewSet):
+	"""
+	API endpoint for handling bookings.
+	User can book a parking slot, User can destroy a booking and generating a bill for booking time.
+	"""
+	queryset = Booking.objects.all()
+	serializer_class = BookingSerializer
 

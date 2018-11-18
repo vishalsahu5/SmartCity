@@ -4,7 +4,7 @@ from accounts.models import User
 
 class ParkingLot(models.Model):
 
-	# In the current iteration, moderator is not included. Only admins will be handle it.
+	# In the current iteration, moderator is not included. Only admins will handle it.
 	# moderator = models.OneToOneField(to=User, on_delete=models.DO_NOTHING, null=True, default=None)
 
 	longitude = models.FloatField(null=True)
@@ -27,7 +27,7 @@ class ParkingSlot(models.Model):
 	# parked in a slot.
 
 	# parked_user = models.OneToOneField(default=None, to=User, blank=True, null=True, on_delete=models.DO_NOTHING)
-	lot = models.OneToOneField(on_delete=models.CASCADE, to=ParkingLot)
+	lot = models.ForeignKey(on_delete=models.CASCADE, to=ParkingLot)
 	isOccupied = models.BooleanField(default=False)
 
 	def __str__(self):
@@ -47,3 +47,12 @@ class OnStreetParkingSlot(models.Model):
 	# more infrastructure.
 
 	# price_per_hour = models.FloatField(default=0)
+
+
+class Booking(models.Model):
+	user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+	parking_lot = models.ForeignKey(ParkingLot, on_delete=models.DO_NOTHING)
+	start_time = models.DateTimeField(auto_now_add=True)
+	end_time = models.DateTimeField(blank=True, null=True)
+	paid = models.BooleanField(default=False)
+
